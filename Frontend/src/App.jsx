@@ -2,7 +2,6 @@ import { lazy, Suspense, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
-import { Cronicas, Repositorio, MaterialEducativo } from './pages/OtherPages.jsx'
 import { AuthProvider } from './context/AuthContext'
 import './styles/global.css'
 
@@ -21,9 +20,20 @@ const NoticiasAdmin = lazy(() => import('./pages/Admin/NoticiasAdmin.jsx'))
 const AdminLayout   = lazy(() => import('./pages/Admin/AdminLayout.jsx'))
 const NoticiasList  = lazy(() => import('./pages/Admin/NoticiasList.jsx'))
 
-// NUEVOS
 const AdminList = lazy(() => import('./pages/Admin/AdminList.jsx'))
 const AdminForm = lazy(() => import('./pages/Admin/AdminForm.jsx'))
+
+// OTRAS PÁGINAS
+const Cronicas           = lazy(() => import('./pages/Cronicas.jsx'))
+const Repositorio        = lazy(() => import('./pages/Repositorio.jsx'))
+const MaterialEducativo  = lazy(() => import('./pages/MaterialEducativo.jsx'))
+
+// DETALLES
+const NoticiaDetail           = lazy(() => import('./pages/NoticiaDetail.jsx'))
+const CronicaDetail           = lazy(() => import('./pages/CronicaDetail.jsx'))
+const RepositorioDetail       = lazy(() => import('./pages/RepositorioDetail.jsx'))
+const CEDOCDetail             = lazy(() => import('./pages/CEDOCDetail.jsx'))
+const MaterialEducativoDetail = lazy(() => import('./pages/MaterialEducativoDetail.jsx'))
 
 function PageLoader() {
     return (
@@ -70,6 +80,13 @@ function Layout() {
                     <Route path="/tienda" element={<Tienda />} />
                     <Route path="/login" element={<Login />} />
 
+                    {/* DETALLES */}
+                    <Route path="/noticias/:id" element={<NoticiaDetail />} />
+                    <Route path="/cronicas/:id" element={<CronicaDetail />} />
+                    <Route path="/repositorio/:id" element={<RepositorioDetail />} />
+                    <Route path="/cedoc/:id" element={<CEDOCDetail />} />
+                    <Route path="/material-educativo/:id" element={<MaterialEducativoDetail />} />
+
                     {/* ADMIN */}
                     <Route path="/admin" element={<AdminLayout />}>
                         <Route
@@ -81,39 +98,33 @@ function Layout() {
                             }
                         />
 
-                        {/* NOTICIAS (NO TOCAR) */}
+                        {/* NOTICIAS */}
                         <Route path="noticias" element={<NoticiasAdmin />} />
                         <Route path="noticias/editar" element={<NoticiasList />} />
 
                         {/* CRÓNICAS */}
                         <Route path="cronicas" element={<AdminForm tipo="crónica" />} />
                         <Route path="cronicas/editar" element={<AdminList tipo="cronicas" />} />
-                        <Route path="cronicas/eliminar" element={<AdminList tipo="cronicas" />} />
 
                         {/* MATERIAL */}
                         <Route path="material" element={<AdminForm tipo="material" />} />
                         <Route path="material/editar" element={<AdminList tipo="material" />} />
-                        <Route path="material/eliminar" element={<AdminList tipo="material" />} />
 
                         {/* REPOSITORIO */}
                         <Route path="repositorio" element={<AdminForm tipo="repositorio" />} />
                         <Route path="repositorio/editar" element={<AdminList tipo="repositorio" />} />
-                        <Route path="repositorio/eliminar" element={<AdminList tipo="repositorio" />} />
 
                         {/* CEDOC */}
                         <Route path="cedoc" element={<AdminForm tipo="cedoc" />} />
                         <Route path="cedoc/editar" element={<AdminList tipo="cedoc" />} />
-                        <Route path="cedoc/eliminar" element={<AdminList tipo="cedoc" />} />
 
                         {/* EVENTOS */}
                         <Route path="eventos" element={<AdminForm tipo="evento" />} />
                         <Route path="eventos/editar" element={<AdminList tipo="eventos" />} />
-                        <Route path="eventos/eliminar" element={<AdminList tipo="eventos" />} />
 
                         {/* USUARIOS */}
                         <Route path="usuarios" element={<AdminForm tipo="usuario" />} />
                         <Route path="usuarios/listar" element={<AdminList tipo="usuarios" />} />
-
                     </Route>
 
                     {/* 404 */}
