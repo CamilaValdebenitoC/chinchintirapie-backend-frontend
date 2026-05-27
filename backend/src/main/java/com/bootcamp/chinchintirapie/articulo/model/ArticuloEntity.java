@@ -22,12 +22,13 @@ public class ArticuloEntity {
     @Column(nullable = false)
     private String title;
 
+    @Column(length = 1000)
     private String description;
 
-    @Column(name = "url_photo")
+    @Column(name = "url_photo", length = 1000)
     private String urlPhoto;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(nullable = false, length = 20000)
     private String body;
 
     @Enumerated(EnumType.STRING)
