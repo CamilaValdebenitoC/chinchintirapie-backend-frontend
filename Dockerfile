@@ -4,8 +4,8 @@ FROM eclipse-temurin:21-jdk AS build
 WORKDIR /app
 
 # Copiar los archivos de Maven Wrapper y config
-COPY backend/.mvn/ .mvn
-COPY backend/mvnw backend/pom.xml ./
+COPY .mvn/ .mvn
+COPY mvnw pom.xml ./
 
 # ✅ Dar permisos de ejecución al wrapper
 RUN chmod +x mvnw
@@ -14,10 +14,10 @@ RUN chmod +x mvnw
 RUN ./mvnw dependency:go-offline
 
 # Copiar el código fuente
-COPY backend/src ./src
+COPY src ./src
 
 # Compilar el proyecto sin tests
-RUN ./mvnw package -DskipTests
+RUN ./mvnw package -Dmaven.test.skip=true
 
 
 # Etapa 2: Imagen final ligera
