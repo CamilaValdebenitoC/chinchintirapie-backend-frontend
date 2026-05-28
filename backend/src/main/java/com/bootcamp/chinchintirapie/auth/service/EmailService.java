@@ -16,7 +16,7 @@ public class EmailService {
     @Value("${spring.mail.properties.mail.from:noreply@chinchintirapie.com}")
     private String fromEmail;
 
-    @Async
+    // @Async  ← deshabilitado temporalmente para ver errores de SendGrid en los logs
     public void sendPasswordResetEmail(String to, String resetLink) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(fromEmail);
