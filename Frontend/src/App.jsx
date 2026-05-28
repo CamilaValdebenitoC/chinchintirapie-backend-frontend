@@ -14,6 +14,8 @@ const CEDOC           = lazy(() => import('./pages/CEDOC.jsx'))
 const Contacto        = lazy(() => import('./pages/Contacto.jsx'))
 const Tienda          = lazy(() => import('./pages/Tienda.jsx'))
 const Login           = lazy(() => import('./pages/Login.jsx'))
+const RecuperarPassword = lazy(() => import('./pages/RecuperarPassword.jsx'))
+const ResetPassword   = lazy(() => import('./pages/ResetPassword.jsx'))
 
 // ADMIN
 const AdminDashboard = lazy(() => import('./pages/Admin/AdminDashboard.jsx'))
@@ -65,7 +67,7 @@ function PageLoader() {
 
 function Layout() {
     const { pathname, hash } = useLocation()
-    const isLogin = pathname === '/login'
+    const isLogin = pathname === '/login' || pathname === '/recuperar-password' || pathname === '/reset-password'
 
     useEffect(() => {
         if (!hash) {
@@ -92,6 +94,8 @@ function Layout() {
                     <Route path="/contacto" element={<Contacto />} />
                     <Route path="/tienda" element={<Tienda />} />
                     <Route path="/login" element={<Login />} />
+                    <Route path="/recuperar-password" element={<RecuperarPassword />} />
+                    <Route path="/reset-password" element={<ResetPassword />} />
 
                     {/* DETALLES */}
                     <Route path="/noticias/:id" element={<NoticiaDetail />} />
