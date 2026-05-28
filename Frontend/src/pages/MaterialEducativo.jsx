@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useReveal } from '../hooks/useReveal';
 import PageHero from '../components/PageHero';
 import Ticker from '../components/Ticker';
+import MediaThumbnail from '../components/MediaThumbnail';
 import multimediaService from '../services/multimediaService';
 import '../styles/MaterialEducativo.css';
 
@@ -39,11 +40,7 @@ export default function MaterialEducativo() {
             <Link to={`/material-educativo/${item.id}`} key={item.id} className="material-link">
               <article className="edu-card reveal">
                 <div className="edu-card-top" style={item.url ? { padding: 0, overflow: 'hidden', background: 'transparent' } : {}}>
-                  {item.url ? (
-                    <img src={item.url} alt={item.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                  ) : (
-                    "📚"
-                  )}
+                  <MediaThumbnail url={item.url} alt={item.title} typeEmoji="✏️" />
                 </div>
                 <div className="edu-card-body">
                   <span className="media-tag">Material Educativo</span>

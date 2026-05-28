@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Ticker from '../components/Ticker';
 import { Link } from 'react-router-dom';
 import { useReveal } from '../hooks/useReveal';
+import MediaThumbnail from '../components/MediaThumbnail';
 import articuloService from '../services/articuloService';
 import '../styles/Noticias.css';
 
@@ -74,11 +75,9 @@ export default function Noticias() {
           {!loading && !error && noticias.length === 0 && <p>No hay noticias disponibles.</p>}
           {!loading && !error && noticias.map((item) => (
             <article key={item.id} className="noticias-card reveal">
-              {item.urlPhoto ? (
-                <img src={item.urlPhoto} alt={item.title} className="noticias-card-media" loading="lazy" />
-              ) : (
-                <div className="noticias-card-media" style={{ background: 'linear-gradient(135deg, var(--rojo), var(--naranja))', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '3rem' }}>📰</div>
-              )}
+              <div className="noticias-card-media" style={item.urlPhoto ? { padding: 0, overflow: 'hidden' } : {}}>
+                <MediaThumbnail url={item.urlPhoto} alt={item.title} typeEmoji="📰" />
+              </div>
               <div className="noticias-card-body">
                 <span className="noticias-card-tag">Noticia</span>
                 <h3>{item.title}</h3>

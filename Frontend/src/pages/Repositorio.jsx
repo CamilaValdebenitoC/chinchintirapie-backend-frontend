@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useReveal } from '../hooks/useReveal';
 import PageHero from '../components/PageHero';
 import Ticker from '../components/Ticker';
+import MediaThumbnail from '../components/MediaThumbnail';
 import multimediaService from '../services/multimediaService';
 import '../styles/Repositorio.css';
 
@@ -55,14 +56,7 @@ export default function Repositorio() {
             <Link to={`/repositorio/${item.id}`} key={item.id} className="repositorio-link-reset">
               <div className="media-card reveal">
                 <div className="media-thumb" style={item.url ? { padding: 0, overflow: 'hidden', background: 'transparent' } : {}}>
-                  {item.url ? (
-                    <img src={item.url} alt={item.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                  ) : (
-                    <>
-                      <span>📂</span>
-                      <div className="play-icon">▶</div>
-                    </>
-                  )}
+                  <MediaThumbnail url={item.url} alt={item.title} typeEmoji="📂" />
                 </div>
                 <div className="media-info">
                   <span className="media-tag">Repositorio</span>

@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useReveal } from '../hooks/useReveal';
 import PageHero from '../components/PageHero';
 import Ticker from '../components/Ticker';
+import MediaThumbnail from '../components/MediaThumbnail';
 import articuloService from '../services/articuloService';
 import '../styles/Cronica.css';
 
@@ -40,11 +41,7 @@ export default function Cronicas() {
             <Link to={`/cronicas/${c.id}`} key={c.id} className="cronica-link">
               <article className="cronica-card reveal">
                 <div className="cronica-emoji" style={c.urlPhoto ? { padding: 0, overflow: 'hidden', background: 'transparent' } : {}}>
-                  {c.urlPhoto ? (
-                    <img src={c.urlPhoto} alt={c.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                  ) : (
-                    "📰"
-                  )}
+                  <MediaThumbnail url={c.urlPhoto} alt={c.title} typeEmoji="📰" />
                 </div>
                 <div>
                   <p className="cronica-date">

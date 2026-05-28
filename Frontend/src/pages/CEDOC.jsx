@@ -3,6 +3,7 @@ import { useReveal } from '../hooks/useReveal';
 import PageHero from '../components/PageHero';
 import Ticker from '../components/Ticker';
 import { Link } from 'react-router-dom';
+import MediaThumbnail from '../components/MediaThumbnail';
 import multimediaService from '../services/multimediaService';
 import { TIMELINE, DOWNLOADS, TOPICS, STATS } from '../data/cedocData';
 import '../styles/Cedoc.css';
@@ -63,11 +64,7 @@ export default function CEDOC() {
                 <Link to={`/cedoc/${a.id}`} key={a.id} className="link-reset">
                   <div className="article-card reveal">
                     <div className="article-icon" style={a.url ? { padding: 0, overflow: 'hidden', background: 'transparent', borderRadius: '12px' } : { background: 'linear-gradient(135deg, var(--purpura), var(--azul))' }}>
-                      {a.url ? (
-                        <img src={a.url} alt={a.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                      ) : (
-                        "📚"
-                      )}
+                      <MediaThumbnail url={a.url} alt={a.title} typeEmoji="📚" />
                     </div>
                     <div className="article-body">
                       <h3>{a.title}</h3>
