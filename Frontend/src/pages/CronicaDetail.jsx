@@ -58,13 +58,19 @@ export default function CronicaDetail() {
         </Link>
 
         <div className="cronica-detail__card">
-          <div className="cronica-detail__emoji" style={cronica.urlPhoto ? { background: 'transparent' } : {}}>
-            {cronica.urlPhoto ? (
-              <img src={cronica.urlPhoto} alt={cronica.title} style={{ width: '100%', maxHeight: '400px', objectFit: 'cover', borderRadius: '12px' }} />
+          <div className="cronica-detail-preview">
+          {cronica.urlPhoto ? (
+            cronica.urlPhoto.match(/\.(mp4|webm|ogg)$/i) ? (
+              <video controls src={cronica.urlPhoto} style={{ width: '100%', maxHeight: '500px', borderRadius: '16px', background: '#000' }} />
+            ) : cronica.urlPhoto.includes('youtube.com/') || cronica.urlPhoto.includes('youtu.be/') ? (
+              <iframe src={cronica.urlPhoto.replace('watch?v=', 'embed/').replace('youtu.be/', 'youtube.com/embed/')} style={{ width: '100%', height: '400px', borderRadius: '16px', border: 'none' }} allowFullScreen title={cronica.title} />
             ) : (
-              "📰"
-            )}
-          </div>
+              <img src={cronica.urlPhoto} alt={cronica.title} style={{ width: '100%', maxHeight: '500px', objectFit: 'cover', borderRadius: '16px' }} />
+            )
+          ) : (
+            <div className="cronica-detail-emoji">📰</div>
+          )}
+        </div>
 
           <div className="cronica-detail__tags">
               <span className="cronica-detail__tag">Crónica</span>
