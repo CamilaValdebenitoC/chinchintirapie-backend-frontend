@@ -1,7 +1,6 @@
 package com.bootcamp.chinchintirapie.auth.controller;
 
 import com.bootcamp.chinchintirapie.auth.service.AuthService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -9,16 +8,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
+@RequestMapping("/api/auth")
 @RequiredArgsConstructor
 public class ForgotPasswordController {
 
     private final AuthService authService;
 
-    /**
-     * Endpoint to handle forgot password requests at the root path.
-     * This mirrors the existing /api/auth/forgot-password endpoint but is exposed without the /api/auth prefix
-     * to support legacy or external client calls.
-     */
     @PostMapping("/forgot-password")
     @ResponseStatus(HttpStatus.OK)
     public Map<String, String> forgotPassword(@RequestBody Map<String, String> request) {
@@ -27,5 +22,13 @@ public class ForgotPasswordController {
             throw new IllegalArgumentException("El correo es requerido");
         }
         return authService.forgotPassword(email);
+    }
+
+    @PostMapping("/reset-password")
+    @ResponseStatus(HttpStatus.OK)
+    public Map<String, String> resetPassword(@RequestBody Map<String, String> request) {
+        String token = request.get("token");
+        String newPassword = request.get("newPassword");
+        return authService.resetPassword(token, newPassword);
     }
 }

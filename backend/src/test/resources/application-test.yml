@@ -27,6 +27,8 @@ jwt:
   expiration: 3600000
 
 app:
+  mail:
+    from: noreply@test.com
   url: http://localhost:8080
 
 frontend:
