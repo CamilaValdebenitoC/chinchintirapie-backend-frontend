@@ -56,20 +56,25 @@ export default function Home() {
         {/* HERO */}
         <section className="hero" id="inicio">
           <div className="hero-bg" style={{
-            background: `linear-gradient(to right, rgba(190,0,60,.85) 0%, rgba(190,0,60,.45) 50%, rgba(190,0,60,.05) 100%), url('/img/chinchintirapie-banner-index.webp') center/cover no-repeat`,
+            background: `
+                linear-gradient(
+                  to bottom,
+                  rgba(190,0,60,0.70) 0%,
+                  rgba(190,0,60,0.62) 20%,
+                  rgba(190,0,60,0.40) 30%,
+                  rgba(190,0,60,0.10) 40%
+                ),
+                url('/img/chinchintirapie-banner-index.webp') center/cover no-repeat
+              `
           }} />
           <div className="hero-content">
             <div className="hero-badge" style={{ color: '#000', fontSize: '1.6rem', padding: '.5rem 1.5rem' }}>
               · Escuela Carnavalera Chinchintirapié ·
             </div>
             <h1 className="hero-title">
-              <em style={{ color: 'var(--naranja)', fontStyle: 'italic' }}>20 años </em>de Carnaval
-              <br />y educación popular
+              <em style={{ color: 'var(--naranja)', fontStyle: 'italic' }}>20 años </em>de Carnaval y educación popular
             </h1>
-            <p className="hero-sub">
-              Donde la música, el baile y la cultura latinoamericana se encuentran para transformar
-              la ciudad en una fiesta viva.
-            </p>
+
             <div className="hero-btns">
               <Link to="/historia" className="btn btn-primary">Historia</Link>
               <Link to="/repositorio" className="btn btn-secondary">Archivo</Link>
@@ -111,7 +116,7 @@ export default function Home() {
                 <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                   <path id="circ" d="M 100,100 m -80,0 a 80,80 0 1,1 160,0 a 80,80 0 1,1 -160,0" fill="none" />
                   <text style={{ fontFamily: 'var(--font-titulo)', fill: 'var(--rojo)' }} fontSize="14" letterSpacing="4">
-                    <textPath href="#circ">★ CHINCHINTIRAPIE ★ ESCUELA CARNAVALERA ★ DESDE 2004 ★ </textPath>
+                    <textPath href="#circ">★ CHINCHINTIRAPIÉ ★ ESCUELA CARNAVALERA ★ DESDE 2004 ★ </textPath>
                   </text>
                 </svg>
               </div>
