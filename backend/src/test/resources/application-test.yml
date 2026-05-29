@@ -21,6 +21,10 @@ spring:
           auth: false
           starttls:
             enable: false
+          # Timeouts agregados para evitar fallos por bloqueo en GitHub Actions
+          connectiontimeout: 1000
+          timeout: 1000
+          writetimeout: 1000
 
 jwt:
   secret: claveSecretaDePruebaSuperSeguraYAlfanumericaParaElBootcamp2026
