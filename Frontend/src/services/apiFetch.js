@@ -28,8 +28,13 @@ export async function apiFetch(endpoint, options = {}) {
   const url = endpoint.startsWith('http') ? endpoint : `${API_BASE}${endpoint}`;
 
   const token = authService.getToken();
+  
+  // Si el body es FormData (subida de archivos), no seteamos Content-Type
+  // para que el navegador ponga automáticamente multipart/form-data con sus boundaries
+  const isFormData = options.body instanceof FormData;
+  
   const headers = {
-    'Content-Type': 'application/json',
+    ...(isFormData ? {} : { 'Content-Type': 'application/json' }),
     ...(token ? { Authorization: `Bearer ${token}` } : {}),
     ...(options.headers || {}),
   };
