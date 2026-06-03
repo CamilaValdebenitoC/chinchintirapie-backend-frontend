@@ -20,15 +20,3 @@ jobs:
             "${{ secrets.RENDER_BACKEND_DEPLOY_HOOK_URL }}"
           echo "✅ Deploy del Backend disparado correctamente."
 
-  deploy-frontend:
-    name: 🌐 Deploy Frontend
-    runs-on: ubuntu-latest
-    steps:
-      - name: Trigger Render deploy (Frontend)
-        run: |
-          echo "Disparando deploy del Frontend en Render..."
-          curl -s -o /dev/null -w "HTTP Status: %{http_code}\n" \
-            -X POST \
-            -H "Accept: application/json" \
-            "${{ secrets.RENDER_FRONTEND_DEPLOY_HOOK_URL }}"
-          echo "✅ Deploy del Frontend disparado correctamente."
