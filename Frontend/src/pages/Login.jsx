@@ -90,6 +90,8 @@ export default function Login() {
         if (id) setClientId(id);
       } catch (err) {
         console.error('Error al obtener Client ID de Google:', err);
+        // Fallback en caso de que el backend no esté corriendo, para que se muestre el botón
+        setClientId('713791119665-gh4tag21e5v8pjkn86n8lgeirjoims7d.apps.googleusercontent.com');
       }
     };
     fetchClientId();
@@ -263,9 +265,12 @@ export default function Login() {
                   onError={onGoogleError}
                   theme="outline"
                   size="large"
-                  text="continue_with"
+                  text="signin_with"
                   shape="rectangular"
                   width="100%"
+                  useOneTap={false}
+                  auto_select={false}
+                  itp_support={false}
                 />
               </div>
             </GoogleOAuthProvider>
